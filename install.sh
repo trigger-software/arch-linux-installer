@@ -34,3 +34,15 @@ while true; do
   fi
 done
 
+printf "Updating live image packages...\n"
+
+PACMAN_UPDATE_LOG_FILE="/tmp/pacman_update.log"
+PACMAN_UPDATE=$(pacman -Syu --noconfirm > "$PACMAN_UPDATE_LOG_FILE" 2>$1)
+
+if PACMAN_UPDATE; then
+  printf "${COLOR_GREEN}System updated successfully.${COLOR_RESET}\n"
+else
+  printf "${COLOR_RED}System update failed.${COLOR_RESET}\n"
+  printf "${COLOR_YELLOW}Check log file to specify the error: $LOG_FILE${COLOR_RESET}\n"
+fi
+
