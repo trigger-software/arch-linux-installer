@@ -36,7 +36,10 @@ done
 
 printf "Updating live image packages...\n"
 
-PACMAN_UPDATE_LOG_FILE="/tmp/pacman_update.log"
+# TMP_FOLDER="/tmp"
+TMP_FOLDER="."
+
+PACMAN_UPDATE_LOG_FILE="${TMP_FOLDER}/pacman_update.log"
 
 if pacman -Syu --noconfirm > "$PACMAN_UPDATE_LOG_FILE" 2>&1; then
   printf "${COLOR_GREEN}System updated successfully.${COLOR_RESET}\n"
